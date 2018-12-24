@@ -1,5 +1,10 @@
 FROM golang:latest
 
-WORKDIR /go/src/hello-monday
 RUN go get github.com/line/line-bot-sdk-go/linebot
-CMD ["go", "run", "main.go"]
+RUN go get github.com/robfig/cron
+
+ENV TZ=Asia/Bangkok
+WORKDIR /go/src/hello-monday
+EXPOSE 6000
+
+CMD ["go", "run", "src/main.go", "src/date.go"]
